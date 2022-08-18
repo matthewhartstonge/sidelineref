@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sidelineref/models/app_state.dart';
+import 'package:sidelineref/providers/app_state.dart';
 
 class ScoreCard extends StatelessWidget {
   const ScoreCard({
