@@ -17,4 +17,8 @@ class TeamModel {
       _points -= 1;
     }
   }
+
+  resetPoints() {
+    _points = 0;
+  }
 }
