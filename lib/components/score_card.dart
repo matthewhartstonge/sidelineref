@@ -13,30 +13,31 @@ class ScoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppState>(
-        builder: (context, appState, child) => Card(
-              child: Column(
-                children: [
-                  Text(appState.getName(type)),
-                  Text(appState.getPoints(type).toString()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          appState.minusPoint(type);
-                        },
-                        icon: Icon(Icons.remove_circle_outline),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          appState.addPoint(type);
-                        },
-                        icon: Icon(Icons.add_circle_outline),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ));
+      builder: (context, appState, child) => Card(
+        child: Column(
+          children: [
+            Text(appState.getName(type)),
+            Text(appState.getPoints(type).toString()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    appState.minusPoint(type);
+                  },
+                  icon: Icon(Icons.remove_circle_outline),
+                ),
+                IconButton(
+                  onPressed: () {
+                    appState.addPoint(type);
+                  },
+                  icon: Icon(Icons.add_circle_outline),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
