@@ -46,4 +46,10 @@ class AppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  resetPoints() {
+    home.resetPoints();
+    away.resetPoints();
+    notifyListeners();
+  }
 }
