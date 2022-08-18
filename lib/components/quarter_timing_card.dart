@@ -1,51 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
-class QuarterTimingCard extends StatefulWidget {
+class QuarterTimingCard extends StatelessWidget {
   const QuarterTimingCard({
     Key? key,
     required this.label,
+    required this.stopwatch,
+    required this.isRunning,
+    required this.onPlayToggled,
   }) : super(key: key);
 
   final String label;
-
-  @override
-  State<QuarterTimingCard> createState() => _QuarterTimingCardState();
-}
-
-class _QuarterTimingCardState extends State<QuarterTimingCard> {
-  final StopWatchTimer _stopWatchTimer = StopWatchTimer();
-  bool isRunning = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() async {
-    super.dispose();
-    await _stopWatchTimer.dispose(); // Need to call dispose function.
-  }
-
-  void toggleTimer() {
-    if (!isRunning) {
-      _stopWatchTimer.onExecute.add(StopWatchExecute.start);
-      setState(() {
-        isRunning = true;
-      });
-    } else {
-      _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
-      setState(() {
-        isRunning = false;
-      });
-    }
-  }
+  final StopWatchTimer stopwatch;
+  final bool isRunning;
+  final VoidCallback onPlayToggled;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<int>(
-      stream: _stopWatchTimer.rawTime,
+      stream: stopwatch.rawTime,
       initialData: 0,
       builder: (context, snap) {
         final value = snap.data as int;
@@ -53,10 +26,10 @@ class _QuarterTimingCardState extends State<QuarterTimingCard> {
         return Card(
           child: Column(
             children: [
-              Text(widget.label),
+              Text(label),
               Text(displayTime),
               IconButton(
-                onPressed: () => toggleTimer(),
+                onPressed: onPlayToggled,
                 icon: Icon(
                   isRunning
                       ? Icons.pause_circle_outline
